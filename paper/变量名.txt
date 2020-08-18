@@ -1,0 +1,62 @@
+all_wsi:        /home/public2/Lan/deepslide/input/all_wsi
+val_wsi_per_class:      20 验证20张
+test_wsi_per_class:     30 测试30张
+keep_orig_copy: True    分数据集时用复制
+num_workers:    12      使用多线程
+patch_size:     256      
+wsi_train:      wsi_train
+wsi_val:        wsi_val
+wsi_test:       wsi_test
+labels_train:   labels_train.csv
+labels_val:     labels_val.csv
+labels_test:    labels_test.csv
+train_folder:   train_folder
+patches_eval_train:     patches_eval_train
+patches_eval_val:       patches_eval_val
+patches_eval_test:      patches_eval_test
+num_train_per_class:    800
+type_histopath: True
+purple_threshold:       100
+purple_scale_size:      15
+slide_overlap:  3
+gen_val_patches_overlap_factor: 1.5
+image_ext:      jpg
+by_folder:      True
+color_jitter_brightness:        0.5
+color_jitter_contrast:  0.5
+color_jitter_saturation:        0.5
+color_jitter_hue:       0.2
+num_epochs:     20
+num_layers:     18
+learning_rate:  0.001
+batch_size:     16
+weight_decay:   0.0001
+learning_rate_decay:    0.85
+resume_checkpoint:      False
+save_interval:  1
+checkpoints_folder:     checkpoints
+checkpoint_file:        xyz.pt
+pretrain:       False
+log_folder:     logs
+auto_select:    True
+preds_train:    preds_train
+preds_val:      preds_val
+preds_test:     preds_test
+inference_train:        inference_train
+inference_val:  inference_val
+inference_test: inference_test
+vis_train:      vis_train
+vis_val:        vis_val
+vis_test:       vis_test
+device: cuda:0
+classes:        ['normal', 'tumor']
+num_classes:    2
+train_patches:  train_folder/train
+val_patches:    train_folder/val
+path_mean:      [-3.932557933097671e+32, 4.5571627358307376e-41, -11451020345344.0]
+path_std:       [nan, 0.0, nan]
+resume_checkpoint_path: checkpoints/xyz.pt
+log_csv:        logs/log_7252020_165917.csv
+eval_model:     checkpoints/xyz.pt
+threshold_search:       (0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9)
+colors: ('red', 'white', 'blue', 'green', 'purple', 'orange', 'black', 'pink', 'yellow')

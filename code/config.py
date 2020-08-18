@@ -1,6 +1,6 @@
 """
 DeepSlide
-Contains all hyperparameters for the entire repository.
+Contains all hyperparameters for the entire repository.包含所有的超参数
 
 Authors: Jason Wei, Behnaz Abdollahi, Saeed Hassanpour
 """
@@ -25,22 +25,28 @@ parser = argparse.ArgumentParser(
 # Must contain subfolders of images labelled by class.
 # If your two classes are 'a' and 'n', you must have a/*.jpg with the images in class a and
 # n/*.jpg with the images in class n.
+# 一个用来提供训练图片的输入文件夹
+# 必须包含（分好类的）图片的子文件夹
+# 如果你的两个类是'a' and 'n'，必须设置一个a类图片的a/*.jpg的文件，n也一样
 parser.add_argument(
     "--all_wsi",
     type=Path,
     default=Path("all_wsi"),
     help="Location of the WSI organized in subfolders by class")
 # For splitting into validation set.
+# 分割为验证集
 parser.add_argument("--val_wsi_per_class",
                     type=int,
                     default=20,
                     help="Number of WSI per class to use in validation set")
 # For splitting into testing set, remaining images used in train.
+# 分割为测试集，其余的图片用于训练
 parser.add_argument("--test_wsi_per_class",
                     type=int,
                     default=30,
                     help="Number of WSI per class to use in test set")
 # When splitting, do you want to move WSI or copy them?
+# 当分割的时候，你是想复制还是移动WSI图像？ 默认： 复制
 parser.add_argument(
     "--keep_orig_copy",
     type=bool,
@@ -53,6 +59,7 @@ parser.add_argument(
 #               GENERAL               #
 #######################################
 # Number of processes to use.
+# 要使用的进程数
 parser.add_argument("--num_workers",
                     type=int,
                     default=8,
@@ -99,6 +106,7 @@ parser.add_argument("--labels_test",
 #               PROCESSING AND PATCH GENERATION               #
 ###############################################################
 # This is the input for model training, automatically built.
+# 这是模型训练的输入，自动生成的
 parser.add_argument(
     "--train_folder",
     type=Path,
@@ -106,6 +114,7 @@ parser.add_argument(
     help="Location of the automatically built training input folder")
 
 # Folders of patches by WSI in training set, used for finding training accuracy at WSI level.
+# 训练集中的 Patch文件夹（WSI），寻找在WSI级别上的测试精度
 parser.add_argument(
     "--patches_eval_train",
     type=Path,
@@ -114,6 +123,7 @@ parser.add_argument(
     "Folders of patches by WSI in training set, used for finding training accuracy at WSI level"
 )
 # Folders of patches by WSI in validation set, used for finding validation accuracy at WSI level.
+# 验证集中的 Patch文件夹（WSI），寻找在WSI级别上的验证精度
 parser.add_argument(
     "--patches_eval_val",
     type=Path,
@@ -122,6 +132,7 @@ parser.add_argument(
     "Folders of patches by WSI in validation set, used for finding validation accuracy at WSI level"
 )
 # Folders of patches by WSI in test set, used for finding test accuracy at WSI level.
+# 测试集，由WSI生成的patch组成的文件夹， 用以寻找WSI级上的测试精度
 parser.add_argument(
     "--patches_eval_test",
     type=Path,
@@ -131,12 +142,14 @@ parser.add_argument(
 )
 
 # Target number of training patches per class.
+# 每一类用以训练的patch数量，默认为80000
 parser.add_argument("--num_train_per_class",
                     type=int,
                     default=80000,
                     help="Target number of training samples per class")
 
 # Only looks for purple images and filters whitespace.
+# 只查找紫色图像，过滤白片
 parser.add_argument(
     "--type_histopath",
     type=bool,
@@ -144,6 +157,7 @@ parser.add_argument(
     help="Only look for purple histopathology images and filter whitespace")
 
 # Number of purple points for region to be considered purple.
+# 表示紫色图对应的紫色点数量
 parser.add_argument(
     "--purple_threshold",
     type=int,
@@ -151,6 +165,7 @@ parser.add_argument(
     help="Number of purple points for region to be considered purple.")
 
 # Scalar to use for reducing image to check for purple.
+# 放缩图像的标量—检查过滤紫色图 默认15倍下采样
 parser.add_argument(
     "--purple_scale_size",
     type=int,
@@ -328,8 +343,7 @@ parser.add_argument(
     "--inference_test",
     type=Path,
     default=Path("inference_test"),
-    help="Folder for outputting WSI testing predictions based on each threshold"
-)
+    help="Folder for outputting WSI testing predictions based on each threshold")
 
 # For visualization.
 parser.add_argument(

@@ -134,12 +134,12 @@ def gen_train_patches(input_folder: Path, output_folder: Path,
         type_histopath: Only look for purple histopathology images and filter whitespace.
     """
     # Find the subfolders and how much patches should overlap for each.
-    subfolders = get_subfolder_paths(folder=input_folder)
+    subfolders = get_subfolder_paths(folder=input_folder)  #运行时输入为wsi_train 输出为wsi_train/nor wsi_train/tumor
     print(f"{subfolders} subfolders found from {input_folder}")
     subfolder_to_overlap_factor = get_subfolder_to_overlap(
         subfolders=subfolders, desired_crops_per_class=num_train_per_class)
 
-    # Produce the patches.
+    # Produce the patches.  遍历wsi_train中的tumor和normal
     for input_subfolder in subfolders:
         produce_patches(input_folder=input_subfolder,
                         output_folder=output_folder.joinpath(
@@ -342,11 +342,11 @@ def produce_patches(input_folder: Path, output_folder: Path,
         num_workers: Number of workers to use for IO.
         patch_size: Size of the patches extracted from the WSI.
         purple_threshold: Number of purple points for region to be considered purple.
-        purple_scale_size: Scalar to use for reducing image to check for purple.
+        purple_scale_size: Scalar to use for reducing image to check for purple. 缩小图像，检查紫色点的数量
         image_ext: Image extension for saving patches.
         type_histopath: Only look for purple histopathology images and filter whitespace.
     """
-    output_folder.mkdir(parents=True, exist_ok=True)
+    output_folder.mkdir(parents=True, exist_ok=True)  #建立保存patch的文件夹 image_locs是每一张wsi的路径组成的路径集合
     image_locs = get_all_image_paths(
         master_folder=input_folder) if by_folder else get_image_names(
             folder=input_folder)
@@ -358,7 +358,7 @@ def produce_patches(input_folder: Path, output_folder: Path,
           f"outputting in {output_folder}")
 
     start_time = time.time()
-
+    # 遍历每一张patch，提取patch 利用imread来读取.tif图像文件
     for image_loc in image_locs:
         image = imread(
             uri=(image_loc if by_folder else input_folder.joinpath(image_loc)))

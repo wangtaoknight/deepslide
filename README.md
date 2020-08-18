@@ -1,5 +1,8 @@
 # DeepSlide: A Sliding Window Framework for Classification of High Resolution Microscopy Images (Whole-Slide Images)
-
+## 中文注解(WT)：
+   1、这个项目是一个处理病理数据的引导性项目。包含完整的处理流程，划分数据集(train、val、test)，生成patch，进行训练，进行测试，以及最后进行可视化。
+   2、但是其仅仅适用于整幅图像都是normal、或者tumor，并不能利用groundtruth来进行训练。如果要进行这样的训练需要自己修改代码来进行实现。
+   3、本代码在设计的时候是作为引例出现的，适用用小型wsi，生成的jpeg为5M左右
 This repository is a sliding window framework for classification of high resolution whole-slide images, often called microscopy or histopathology images. This is also the code for the paper [Pathologist-level Classification of Histologic Patterns on Resected Lung Adenocarcinoma Slides with Deep Neural Networks](https://www.nature.com/articles/s41598-019-40041-7). For a practical guide and implementation tips, see the Medium post [Classification of Histopathology Images with Deep Learning: A Practical Guide](https://medium.com/health-data-science/classification-of-histopathology-images-with-deep-learning-a-practical-guide-2e3ffd6d59c5). 
 
 *If you email me with questions about this repository, I will not respond. Open an issue instead.*

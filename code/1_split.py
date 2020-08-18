@@ -1,3 +1,7 @@
+'''
+In this section,aim to git patch from MSI dataset.
+all_wsi 最开始位置 ；classes返回的类的列表名
+'''
 import config
 from utils_split import split
 

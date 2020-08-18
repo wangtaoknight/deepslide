@@ -97,9 +97,9 @@ def split(keep_orig_copy: bool, wsi_train: Path, wsi_val: Path, wsi_test: Path,
         # Assign training, test, and validation images.
         test_idx = len(image_paths) - test_wsi_per_class
         val_idx = test_idx - val_wsi_per_class
-        train_images = image_paths[:val_idx]
-        val_images = image_paths[val_idx:test_idx]
-        test_images = image_paths[test_idx:]
+        train_images = image_paths[:val_idx]  #代码中列出了所有的训练图像路径（109个）
+        val_images = image_paths[val_idx:test_idx] #所有验证图像的路径
+        test_images = image_paths[test_idx:] # 所有测试图像的路径
         print(f"class {Path(subfolder).name} "
               f"#train={len(train_images)} "
               f"#val={len(val_images)} "
@@ -135,3 +135,5 @@ def split(keep_orig_copy: bool, wsi_train: Path, wsi_val: Path, wsi_test: Path,
                  image_label_dict=train_img_to_label)
     write_to_csv(dest_filename=labels_val, image_label_dict=val_img_to_label)
     write_to_csv(dest_filename=labels_test, image_label_dict=test_img_to_label)
+
+

@@ -10,14 +10,14 @@ window_size = 10000
 Image.MAX_IMAGE_PIXELS = 1e10
 compressed_window_size = int(window_size / compression_factor)
 
-
+# 获取图像路径
 def get_image_paths(folder):
     image_paths = [join(folder, f) for f in listdir(folder) if isfile(join(folder, f))]
     if join(folder, '.DS_Store') in image_paths:
         image_paths.remove(join(folder, '.DS_Store'))
     return image_paths
 
-
+# 获取下一级目录文件夹
 def get_subfolder_paths(folder):
     subfolder_paths = [join(folder, f) for f in listdir(folder) if (isdir(join(folder, f)) and '.DS_Store' not in f)]
     if join(folder, '.DS_Store') in subfolder_paths:
