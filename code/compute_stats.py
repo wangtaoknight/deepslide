@@ -96,5 +96,5 @@ def compute_stats(folderpath: Path,
         loader=torch.utils.data.DataLoader(dataset=MyDataset(
             folder=folderpath),
                                            batch_size=1,
-                                           num_workers=1,
+                                           num_workers=0,
                                            shuffle=False))
